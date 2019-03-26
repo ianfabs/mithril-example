@@ -1,5 +1,16 @@
-var m = require("mithril");
+import m from "mithril";
 
+/**
+ * A Mithril Component without jsx
+ */
+let Example = {
+    view: function (vnode) {
+        return m("div", "Hello, " + vnode.attrs.name)
+    }
+};
+/**
+ * A Mithril Component with jsx
+ */
 let JSXComponent = {
     oninit: function(vnode) {
         console.log("initialized")
@@ -8,7 +19,7 @@ let JSXComponent = {
         console.log("DOM created")
     },
     onbeforeupdate: function(vnode, old) {
-        return true
+        return true;
     },
     onupdate: function(vnode) {
         console.log("DOM updated")
@@ -30,20 +41,18 @@ let JSXComponent = {
             </div>
         );
     }
-}
+};
 
-let Example = {
-    view: function (vnode) {
-        return m("div", "Hello, " + vnode.attrs.name)
-    }
-}
-m.route.prefix("")
-m.route(document.querySelector("#app"), "/", {
+const root = document.querySelector("#app");
+
+m.route.prefix("");
+
+m.route(root, "/", {
     "/" : {
         view(){
             return (
                 <div>
-                    {m("a[href=/hi/Carl]", {oncreate: m.route.link}, "Hello Carl")}
+                    {m("a[href=/hi/Ian]", {oncreate: m.route.link}, "Hello Ian")}
                 </div>
             )
         }
